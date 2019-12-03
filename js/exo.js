@@ -38,58 +38,71 @@ function unite(nb){
 
 function deux_unite(nb){
     var nombre="";
-    var modulo = nb % 10;
-    var div = parseInt(nb / 10);
-    if(div >=1 && div < 4){
-        nombre = dix;
-        for(var i = 1; i < div; i++){
-           nombre = nombre + dix;
-        }
-        nombre += unite(modulo);
+    if(nb < 10){
+        nombre = unite(nb);
     }
-    else if(div == 4){
-        nombre = dix+cinquante;
-        nombre += unite(modulo);
-    }
-    else if(div > 4 && div < 9){
-        nombre = cinquante;
-        for(var i = 5; i < div; i++){
+    else { 
+        var modulo = nb % 10;
+        var div = parseInt(nb / 10);
+        if(div >=1 && div < 4){
+            nombre = dix;
+            for(var i = 1; i < div; i++){
             nombre = nombre + dix;
+            }
+            nombre += unite(modulo);
         }
-        nombre += unite(modulo);
-    }
-    else if(div == 9){
-        nombre = dix+cent;
-        nombre += unite(modulo);
+        else if(div == 4){
+            nombre = dix+cinquante;
+            nombre += unite(modulo);
+        }
+        else if(div > 4 && div < 9){
+            nombre = cinquante;
+            for(var i = 5; i < div; i++){
+                nombre = nombre + dix;
+            }
+            nombre += unite(modulo);
+        }
+        else if(div == 9){
+            nombre = dix+cent;
+            nombre += unite(modulo);
+        }
     }
     return nombre;
 }
 
 function trois_unite(nb){
     var nombre="";
-    var modulo = nb % 100;
-    var div = parseInt(nb / 100);
-    if(div >=1 && div < 4){
-        nombre = cent;
-        for(var i = 1; i < div; i++){
-           nombre = nombre + cent;
-        }
-        nombre += deux_unite(modulo);
+    if(nb < 10){
+        nombre = unite(nb);
     }
-    else if(div == 4){
-        nombre = cent+cinq_cent;
-        nombre += deux_unite(modulo);
+    else if(nb >=10 && nb < 100){
+        nombre = deux_unite(nb);
     }
-    else if(div > 4 && div < 9){
-        nombre = cinq_cent;
-        for(var i = 5; i < div; i++){
+    else{ 
+        var modulo = nb % 100;
+        var div = parseInt(nb / 100);
+        if(div >=1 && div < 4){
+            nombre = cent;
+            for(var i = 1; i < div; i++){
             nombre = nombre + cent;
+            }
+            nombre += deux_unite(modulo);
         }
-        nombre += deux_unite(modulo);
-    }
-    else if(div == 9){
-        nombre = cent+mille;
-        nombre += deux_unite(modulo);
+        else if(div == 4){
+            nombre = cent+cinq_cent;
+            nombre += deux_unite(modulo);
+        }
+        else if(div > 4 && div < 9){
+            nombre = cinq_cent;
+            for(var i = 5; i < div; i++){
+                nombre = nombre + cent;
+            }
+            nombre += deux_unite(modulo);
+        }
+        else if(div == 9){
+            nombre = cent+mille;
+            nombre += deux_unite(modulo);
+        }
     }
     return nombre;
 }
